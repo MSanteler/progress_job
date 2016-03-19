@@ -23,8 +23,13 @@ module ProgressJob
       update_progress(step: step)
     end
 
-    def update_progress_max(progress_max)
+    def set_progress_max(progress_max)
       @job.update_column(:progress_max, progress_max)
+    end
+    alias_method :update_progress_max, :set_progress_max
+
+    def set_progress(progress)
+      @job.update_column(:progress_current, progress)
     end
 
     def error(job, exception)
